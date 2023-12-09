@@ -464,5 +464,11 @@ optional<float> RoundFilter::new_value(float value) {
   return value;
 }
 
+RemapFilter::RemapFilter(float min, float max, float min_out, float max_out) 
+    : min_(min), max_(max), min_out_(min_out), max_out_(max_out) {}
+optional<float> RemapFilter::new_value(float value) {
+  return esphome::remap(value, this->min_, this->max_, this->min_out_, this->max_out_);
+}
+
 }  // namespace sensor
 }  // namespace esphome
