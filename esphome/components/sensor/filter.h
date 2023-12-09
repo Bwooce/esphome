@@ -429,5 +429,17 @@ class RoundFilter : public Filter {
   uint8_t precision_;
 };
 
+class RemapFilter : public Filter {
+ public:
+  explicit RemapFilter(float min, float max, float min_out, float max_out);
+  optional<float> new_value(float value) override;
+
+ protected:
+  float min_{NAN};
+  float max_{NAN};
+  float min_out_{NAN};
+  float max_out_{NAN};
+};
+
 }  // namespace sensor
 }  // namespace esphome
